@@ -11,7 +11,14 @@ from rest_framework.decorators import action
 from rest_framework import mixins
 from .filters import ArticleFilter
 from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.viewsets import ModelViewSet
+from .models import Project
+from .serializers import ProjectModelSerializer
 
+
+class ToDoModelViewSet(ModelViewSet):
+	queryset = Author.objects.all()
+	serializer_class = ProjectModelSerializer
 		
 @api_view(['GET'])
 @renderer_classes([JSONRenderer])
