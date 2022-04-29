@@ -14,7 +14,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     create_at = models.DateTimeField(default=timezone.now)
     update_at = models.DateTimeField()
     user = models.CharField(max_lenght=64)
-    active = models.BoleanField
+    active = models.BooleanField(deafault=False)
     
     def __str__(self):
         return self.email

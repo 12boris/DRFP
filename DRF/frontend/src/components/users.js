@@ -1,20 +1,20 @@
 import React from 'react'
 const UserItem = ({user}) => {
 	return (
-	<tr>
-		<td>
-			{users.first_name}
-		</td>
-		<td>
-			{users.last_name}
-		</td>
-		<td>
-			{users.birthday_year}
-		</td>
-		<td>
-			{users.email}
-		</td>
-	</tr>
+		<tr>
+			<td>
+				{users.first_name}
+			</td>
+			<td>
+				{users.last_name}
+			</td>
+			<td>
+				{users.birthday_year}
+			</td>
+			<td>
+				{users.email}
+			</td>
+		</tr>
 	)
 }
 const UsersList = ({users}) => {
