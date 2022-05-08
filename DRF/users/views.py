@@ -1,11 +1,38 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
-from .models import Author
-from .serializers import AuthorModelSerializer
+from rest_framework import viewsets, permissions
+from .models import CustomUser, CustomToDo, Project
+from .serializers import ToDoSerializerBase, ProjectSerializerBase, ProjectSerializer, ToDoSerializer, UserSerializer
 
-class AuthorModelViewSet(ModelViewSet):
-	queryset = Author.objects.all()
-	serializer_class = AuthorModelSerializer
+
+
+class AuthorViewSet(viewsets.ModelViewSet):
+	serializer_class = UserSerializer
+	queryset = CustomUser.objects.all()
+	
+class ToDoViewSet(viewsets.ModelViewSet):
+	serializer_class = ToDoSerializer
+	queryset = CustomToDo.objects.all()
+	
+	def get_serializer_class(self):
+		if self.request.method in ['GET']:
+			return ToDoSerializer
+		return ToDoSerializerBase
+		
+class ProjectViewSet(viewsets.ModelViewSet):
+	serializer_class = ProjectSerializer
+	queryset = Project.objects.all()
+	
+	def get_serializer_class(self):
+		if self.request.method in ['GET']:
+			return ProjectSerializer
+		return ProjectSerializerBase
+
+
+
+class UserModelViewSet(ModelViewSet):
+	queryset = User.objects.all()
+	serializer_class = UserModelSerializer
 	
 @api_view(['GET'])
 @renderer_classes([JSONRenderer])
@@ -51,6 +78,4 @@ class ArticleLimitOffsetPaginatonViewSet(viewsets.ModelViewSet):
 	queryset = Article.objects.all()
 	serializer_class = ArticleSerializer
 	pagination_class = ArticleLimitOffsetPagination
-
-
 	

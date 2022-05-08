@@ -6,7 +6,7 @@ from django.utils import timezone
 from .managers import CustomUserManager
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):
+class CustomToDo(AbstractBaseUser, PermissionsMixin):
 
     project = models.CharField(max_length=64)
     is_staff = models.BooleanField(default=False)
